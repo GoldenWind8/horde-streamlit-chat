@@ -11,17 +11,24 @@ headers = {
 }
 
 def generate_text(prompt):
+
+    instruction = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+You are a helpful AI assistant for travel tips and recommendations<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
+
     payload = json.dumps({
-        "prompt": f"<s>[INST] {prompt} [/INST]",
+        "prompt": instruction,
         "models": [
-            "aphrodite/meta-llama/Meta-Llama-3-8B-Instruct"
+            "aphrodite/meta-llama/Meta-Llama-3-70B-Instruct"
         ],
         "n": 1,
         "trusted_workers": False,
         "params": {
             "max_context_length": 512,
             "max_length": 100,
-            "temperature": 0.7,
+            "temperature": 0,
             "top_p": 0.9
         }
     })
@@ -47,7 +54,7 @@ def poll_api(job_id):
 
 # Streamlit app
 def main():
-    st.title("AI Chat Application")
+    st.title("AI GRID CHAT 🌐👾")
 
     # Chat history
     if "chat_history" not in st.session_state:
