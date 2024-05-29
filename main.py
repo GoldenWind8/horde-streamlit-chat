@@ -27,8 +27,8 @@ You are a helpful AI assistant for travel tips and recommendations<|eot_id|><|st
         "trusted_workers": False,
         "params": {
             "max_context_length": 512,
-            "max_length": 100,
-            "temperature": 0,
+            "max_length": 20,
+            "temperature": 0.7,
             "top_p": 0.9
         }
     })
